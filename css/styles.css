@@ -554,16 +554,6 @@ body {
   margin: 0;
 }
 
-/* ===== PRICING SPRINT FOOTNOTE ===== */
-.sprint-footnote {
-  font-size: 0.65rem;
-  color: var(--text-muted);
-  margin-top: 0.35rem;
-  text-align: center;
-  font-style: italic;
-  line-height: 1.4;
-}
-
 /* ===== MOBILE ===== */
 @media screen and (max-width: 768px) {
   :root { --section-gap: 80px; }
