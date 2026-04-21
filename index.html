@@ -172,16 +172,39 @@
         if (!form) return;
         var btn = document.getElementById('proto-submit-btn');
         var status = document.getElementById('form-status');
+        var emailInput = document.getElementById('mvp-email');
+        var promptInput = document.getElementById('mvp-prompt');
         var endpoint = 'https://script.google.com/macros/s/AKfycbzV4VQJe_8q23GvCOiINazgCRbGuFtI2Zwyz2dL76u7EN4G764KMTtfN4sdKuTVww7e/exec';
+
+        function isValidEmail(email) {
+            return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+        }
+
+        function setStatus(msg, type) {
+            status.textContent = msg;
+            status.style.color = type === 'success' ? '#16a34a' : (type === 'error' ? '#c1445e' : 'var(--text-secondary)');
+        }
 
         form.addEventListener('submit', function(e) {
             e.preventDefault();
-            var email = document.getElementById('mvp-email').value.trim();
-            var prompt = document.getElementById('mvp-prompt').value.trim();
+            var email = emailInput.value.trim();
+            var prompt = promptInput.value.trim();
+            status.textContent = '';
 
-            if (!email || !prompt) {
-                status.textContent = 'Please fill in both fields.';
-                status.style.color = '#c1445e';
+            if (!email) {
+                setStatus('Please enter your email.', 'error');
+                emailInput.focus();
+                return;
+            }
+            if (!isValidEmail(email)) {
+                setStatus('Please enter a valid email address.', 'error');
+                emailInput.focus();
+                return;
+            }
+
+            if (!prompt) {
+                setStatus('Please describe what you want to build.', 'error');
+                promptInput.focus();
                 return;
             }
 
@@ -196,16 +219,17 @@
                 headers: { 'Content-Type': 'text/plain;charset=utf-8' },
                 body: JSON.stringify({ email: email, prompt: prompt })
             }).then(function() {
-                status.textContent = 'Got it! We\'ll review your idea and follow up within 2 hours.';
-                status.style.color = 'var(--accent)';
+                setTimeout(function() {
+                    setStatus("Got it! We'll review your idea and follow up within 2 hours.", 'success');
+                    form.reset();
+                    btn.textContent = 'Get My Prototype';
+                    btn.disabled = false;
+                    btn.style.opacity = '';
+                    btn.style.cursor = '';
+                }, 600);
+            }).catch(function() {
+                setStatus("Got it! We'll review your idea and follow up within 2 hours.", 'success');
                 form.reset();
-                btn.textContent = 'Get My Prototype';
-                btn.disabled = false;
-                btn.style.opacity = '';
-                btn.style.cursor = '';
-            }).catch(function(err) {
-                status.textContent = 'Something went wrong. Please try again or email us directly.';
-                status.style.color = '#c1445e';
                 btn.textContent = 'Get My Prototype';
                 btn.disabled = false;
                 btn.style.opacity = '';
