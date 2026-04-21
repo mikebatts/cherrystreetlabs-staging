@@ -419,78 +419,6 @@ body {
   margin: 0;
 }
 
-/* ===== MVP FORM (hero) ===== */
-.mvp-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
-  max-width: 100%;
-  text-align: left;
-}
-
-.mvp-form .form-field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
-.mvp-form label {
-  font-size: 0.78rem;
-  color: var(--text-secondary);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 500;
-}
-
-.mvp-form textarea,
-.mvp-form input[type="email"] {
-  background: rgba(255, 255, 255, 0.7);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 10px 14px;
-  color: var(--text);
-  font-family: 'Inter', system-ui, sans-serif;
-  font-size: 0.9rem;
-  resize: vertical;
-  transition: border-color 0.2s ease, background 0.2s ease;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.mvp-form textarea:focus,
-.mvp-form input[type="email"]:focus {
-  outline: none;
-  border-color: var(--accent);
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.mvp-form textarea::placeholder,
-.mvp-form input[type="email"]::placeholder {
-  color: var(--text-muted);
-}
-
-.mvp-submit-btn {
-  font-family: 'Inter', system-ui, sans-serif;
-  font-weight: 600;
-  font-size: 0.85rem;
-  letter-spacing: 0.04em;
-  padding: 0.9rem 2.4rem;
-  background: var(--accent);
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background 0.3s ease, transform 0.2s ease;
-  margin: 6px auto 0;
-  width: auto;
-  align-self: center;
-}
-
-.mvp-submit-btn:hover {
-  background: var(--accent-hover);
-  transform: translateY(-1px);
-}
-
 /* ===== HOW IT WORKS SECTION ===== */
 .how-it-works-section {
   background: var(--surface);
@@ -607,121 +535,170 @@ body {
   .mesh-blob { animation: none !important; }
 }
 
-/* Prompt Section — beige background, matching Who We Are section */
-#build-mvp {
+/* Legionnaire — Prototype Form Section */
+.build-section {
+    padding: 96px 60px;
     background: #f5f0eb;
 }
 
-#build-mvp .section-label {
-    color: rgba(0, 0, 0, 0.4);
+@keyframes build-fade {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
 }
 
-#build-mvp .prompt-headline {
-    color: #1a1a1a;
-    font-size: 2.5rem;
+.build-section-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.build-section .section-label {
+    display: block;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+}
+
+.build-section .build-headline {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-size: clamp(2.4rem, 5vw, 3.5rem);
+    font-weight: 400;
+    color: var(--text);
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin-bottom: 1.5rem;
     font-style: italic;
-    font-family: 'Instrument Serif', serif;
-    line-height: 1.2;
+}
+
+.build-section .build-headline sup {
+    font-size: 0.6em;
+    vertical-align: super;
+    line-height: 0;
+}
+
+.build-section .build-body {
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    max-width: 600px;
     margin: 0 0 16px;
 }
 
-#build-mvp .prompt-headline sup { font-size: 0.6em; vertical-align: super; line-height: 0; }
-
-#build-mvp .prompt-subheadline {
-    color: rgba(0, 0, 0, 0.55);
-    font-size: 1rem;
-    line-height: 1.6;
-    margin: 0 0 8px;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
-    font-family: 'Inter', sans-serif;
-}
-
-#build-mvp .prompt-disclaimer {
-    color: rgba(0, 0, 0, 0.3);
+.build-disclaimer {
     font-size: 0.8rem;
+    color: rgba(0, 0, 0, 0.3);
     margin: 0 0 40px;
-    max-width: 520px;
-    margin-left: auto;
-    margin-right: auto;
     font-family: 'Inter', sans-serif;
 }
 
-#build-mvp .mvp-form {
+.build-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
-    text-align: left;
-    max-width: 480px;
-    margin: 0 auto;
+    max-width: 560px;
 }
 
-#build-mvp .mvp-form .form-field {
+.build-form .form-field {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
-#build-mvp .mvp-form label {
+.build-form label {
     font-family: 'Inter', sans-serif;
     font-size: 0.82rem;
     font-weight: 500;
-    color: rgba(0, 0, 0, 0.65);
+    color: var(--text-secondary);
     letter-spacing: 0.02em;
 }
 
-#build-mvp .mvp-form textarea,
-#build-mvp .mvp-form input[type="email"] {
+.build-form textarea,
+.build-form input[type="email"] {
     background: rgba(0, 0, 0, 0.04);
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     padding: 12px 14px;
-    color: #1a1a1a;
+    color: var(--text);
     font-family: 'Inter', sans-serif;
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     resize: vertical;
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
     box-sizing: border-box;
+    line-height: 1.5;
 }
 
-#build-mvp .mvp-form textarea:focus,
-#build-mvp .mvp-form input[type="email"]:focus {
+.build-form textarea:focus,
+.build-form input[type="email"]:focus {
     outline: none;
-    border-color: rgba(193, 68, 94, 0.5);
+    border-color: var(--accent);
     box-shadow: 0 0 0 2px rgba(193, 68, 94, 0.1);
 }
 
-#build-mvp .mvp-form textarea::placeholder,
-#build-mvp .mvp-form input[type="email"]::placeholder {
+.build-form textarea::placeholder,
+.build-form input[type="email"]::placeholder {
     color: rgba(0, 0, 0, 0.3);
 }
 
-#build-mvp .mvp-form textarea {
+.build-form textarea {
     min-height: 100px;
 }
 
-#build-mvp .mvp-submit-btn {
+.build-submit-btn {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 0.92rem;
+    font-size: 0.95rem;
     padding: 14px 32px;
-    background: #c1445e;
+    background: var(--accent);
     color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.15s ease;
-    margin-top: 4px;
+    width: auto;
     align-self: flex-start;
     letter-spacing: 0.02em;
 }
 
-#build-mvp .mvp-submit-btn:hover { background: #a83a52; transform: translateY(-1px); }
+.build-submit-btn:hover {
+    background: var(--accent-hover);
+    transform: translateY(-1px);
+}
 
-@media (max-width: 600px) {
-    #build-mvp .prompt-headline { font-size: 1.75rem; }
-    #build-mvp .prompt-subheadline { font-size: 0.92rem; }
-    #build-mvp .mvp-submit-btn { width: 100%; text-align: center; }
+.build-submit-btn:active {
+    transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .build-section .section-label {
+        animation: build-fade 0.6s ease-out 0.1s backwards;
+    }
+    .build-section .build-headline {
+        animation: build-fade 0.6s ease-out 0.2s backwards;
+    }
+    .build-section .build-body {
+        animation: build-fade 0.6s ease-out 0.3s backwards;
+    }
+    .build-form {
+        animation: build-fade 0.6s ease-out 0.4s backwards;
+    }
+}
+
+@media (max-width: 768px) {
+    .build-section {
+        padding: 64px 32px;
+    }
+}
+
+@media (max-width: 480px) {
+    .build-section {
+        padding: 48px 24px;
+    }
+    .build-submit-btn {
+        width: 100%;
+        text-align: center;
+    }
 }
