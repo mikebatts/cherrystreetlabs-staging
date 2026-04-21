@@ -609,41 +609,95 @@ body {
 
 /* Prompt Section */
 .prompt-section {
-    padding: 80px 24px;
-    background: rgba(255,255,255,0.02);
+    background: #0a0a0a;
+    padding: 96px 60px;
+    position: relative;
+    overflow: hidden;
 }
 
-.prompt-section-inner {
-    max-width: 680px;
+@keyframes prompt-float-1 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(40px, -30px) scale(1.1); }
+}
+
+@keyframes prompt-float-2 {
+    0%, 100% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(-30px, 40px) scale(1.05); }
+}
+
+.prompt-section::before {
+    content: '';
+    position: absolute;
+    top: -20%;
+    left: 15%;
+    width: 50%;
+    height: 60%;
+    background: radial-gradient(ellipse, rgba(193, 68, 94, 0.06), transparent 70%);
+    border-radius: 50%;
+    animation: prompt-float-1 25s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.prompt-section::after {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    right: 10%;
+    width: 45%;
+    height: 55%;
+    background: radial-gradient(ellipse, rgba(193, 68, 94, 0.04), transparent 70%);
+    border-radius: 50%;
+    animation: prompt-float-2 20s ease-in-out infinite;
+    pointer-events: none;
+}
+
+.prompt-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 640px;
     margin: 0 auto;
     text-align: center;
 }
 
-.prompt-section-inner .section-label {
+.prompt-inner .section-label {
     display: inline-block;
-    font-size: 0.75rem;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
     font-weight: 600;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.35);
-    margin-bottom: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    margin-bottom: 16px;
 }
 
 .prompt-headline {
     font-family: 'Instrument Serif', serif;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-style: italic;
-    line-height: 1.3;
-    color: #fff;
-    margin: 0 0 12px;
+    line-height: 1.2;
+    color: #f5e6d3;
+    margin: 0 0 16px;
 }
 
-.prompt-body {
-    font-size: 0.9rem;
-    color: rgba(255,255,255,0.5);
+.prompt-headline sup { font-size: 0.6em; vertical-align: super; line-height: 0; }
+
+.prompt-subheadline {
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
     line-height: 1.6;
-    margin: 0 0 32px;
-    max-width: 560px;
+    color: rgba(255, 255, 255, 0.55);
+    margin: 0 0 8px;
+    max-width: 520px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.prompt-disclaimer {
+    font-family: 'Inter', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin: 0 0 40px;
+    max-width: 520px;
     margin-left: auto;
     margin-right: auto;
 }
@@ -651,36 +705,36 @@ body {
 .mvp-form {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 18px;
     text-align: left;
-    max-width: 500px;
+    max-width: 480px;
     margin: 0 auto;
 }
 
 .mvp-form .form-field {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 6px;
 }
 
 .mvp-form label {
-    font-size: 0.8rem;
-    color: rgba(255,255,255,0.7);
     font-family: 'Inter', sans-serif;
+    font-size: 0.82rem;
     font-weight: 500;
+    color: rgba(255, 255, 255, 0.65);
 }
 
 .mvp-form textarea,
 .mvp-form input[type="email"] {
-    background: rgba(255,255,255,0.04);
-    border: 1px solid rgba(255,255,255,0.2);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 8px;
-    padding: 10px 14px;
-    color: #fff;
+    padding: 12px 14px;
+    color: #f5e6d3;
     font-family: 'Inter', sans-serif;
-    font-size: 0.9rem;
+    font-size: 0.92rem;
     resize: vertical;
-    transition: border-color 0.2s ease;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
     width: 100%;
     box-sizing: border-box;
 }
@@ -688,40 +742,38 @@ body {
 .mvp-form textarea:focus,
 .mvp-form input[type="email"]:focus {
     outline: none;
-    border-color: #c1445e;
+    border-color: rgba(193, 68, 94, 0.6);
+    box-shadow: 0 0 0 2px rgba(193, 68, 94, 0.15);
 }
 
 .mvp-form textarea::placeholder,
 .mvp-form input[type="email"]::placeholder {
-    color: rgba(255,255,255,0.35);
+    color: rgba(255, 255, 255, 0.3);
 }
+
+.mvp-form textarea { min-height: 100px; }
 
 .mvp-submit-btn {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
-    font-size: 0.9rem;
-    padding: 12px 28px;
+    font-size: 0.92rem;
+    padding: 14px 32px;
     background: #c1445e;
-    color: white;
+    color: #f5e6d3;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.15s ease;
-    margin: 4px auto 0;
-    width: auto;
-    align-self: center;
+    margin-top: 4px;
+    align-self: flex-start;
 }
 
-.mvp-submit-btn:hover {
-    background: #a83a52;
-    transform: translateY(-1px);
-}
+.mvp-submit-btn:hover { background: #a83a52; transform: translateY(-1px); }
+.mvp-submit-btn:active { transform: translateY(0); }
 
 @media (max-width: 600px) {
-    .prompt-headline {
-        font-size: 1.5rem;
-    }
-    .prompt-section {
-        padding: 60px 16px;
-    }
+    .prompt-headline { font-size: 1.75rem; }
+    .prompt-section { padding: 64px 24px; }
+    .prompt-subheadline { font-size: 0.92rem; }
+    .mvp-submit-btn { width: 100%; text-align: center; }
 }
