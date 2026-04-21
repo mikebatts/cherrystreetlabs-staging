@@ -607,102 +607,48 @@ body {
   .mesh-blob { animation: none !important; }
 }
 
-/* Prompt Section */
-.prompt-section {
-    background: #0a0a0a;
-    padding: 96px 60px;
-    position: relative;
-    overflow: hidden;
+/* Prompt Section — beige background, matching Who We Are section */
+#build-mvp {
+    background: #f5f0eb;
 }
 
-@keyframes prompt-float-1 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(40px, -30px) scale(1.1); }
+#build-mvp .section-label {
+    color: rgba(0, 0, 0, 0.4);
 }
 
-@keyframes prompt-float-2 {
-    0%, 100% { transform: translate(0, 0) scale(1); }
-    50% { transform: translate(-30px, 40px) scale(1.05); }
-}
-
-.prompt-section::before {
-    content: '';
-    position: absolute;
-    top: -20%;
-    left: 15%;
-    width: 50%;
-    height: 60%;
-    background: radial-gradient(ellipse, rgba(193, 68, 94, 0.06), transparent 70%);
-    border-radius: 50%;
-    animation: prompt-float-1 25s ease-in-out infinite;
-    pointer-events: none;
-}
-
-.prompt-section::after {
-    content: '';
-    position: absolute;
-    bottom: -10%;
-    right: 10%;
-    width: 45%;
-    height: 55%;
-    background: radial-gradient(ellipse, rgba(193, 68, 94, 0.04), transparent 70%);
-    border-radius: 50%;
-    animation: prompt-float-2 20s ease-in-out infinite;
-    pointer-events: none;
-}
-
-.prompt-inner {
-    position: relative;
-    z-index: 1;
-    max-width: 640px;
-    margin: 0 auto;
-    text-align: center;
-}
-
-.prompt-inner .section-label {
-    display: inline-block;
-    font-family: 'Inter', sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
-    margin-bottom: 16px;
-}
-
-.prompt-headline {
-    font-family: 'Instrument Serif', serif;
+#build-mvp .prompt-headline {
+    color: #1a1a1a;
     font-size: 2.5rem;
     font-style: italic;
+    font-family: 'Instrument Serif', serif;
     line-height: 1.2;
-    color: #f5e6d3;
     margin: 0 0 16px;
 }
 
-.prompt-headline sup { font-size: 0.6em; vertical-align: super; line-height: 0; }
+#build-mvp .prompt-headline sup { font-size: 0.6em; vertical-align: super; line-height: 0; }
 
-.prompt-subheadline {
-    font-family: 'Inter', sans-serif;
+#build-mvp .prompt-subheadline {
+    color: rgba(0, 0, 0, 0.55);
     font-size: 1rem;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.55);
     margin: 0 0 8px;
     max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Inter', sans-serif;
 }
 
-.prompt-disclaimer {
-    font-family: 'Inter', sans-serif;
+#build-mvp .prompt-disclaimer {
+    color: rgba(0, 0, 0, 0.3);
     font-size: 0.8rem;
-    color: rgba(255, 255, 255, 0.3);
     margin: 0 0 40px;
     max-width: 520px;
     margin-left: auto;
     margin-right: auto;
+    font-family: 'Inter', sans-serif;
 }
 
-.mvp-form {
+#build-mvp .mvp-form {
     display: flex;
     flex-direction: column;
     gap: 18px;
@@ -711,26 +657,27 @@ body {
     margin: 0 auto;
 }
 
-.mvp-form .form-field {
+#build-mvp .mvp-form .form-field {
     display: flex;
     flex-direction: column;
     gap: 6px;
 }
 
-.mvp-form label {
+#build-mvp .mvp-form label {
     font-family: 'Inter', sans-serif;
     font-size: 0.82rem;
     font-weight: 500;
-    color: rgba(255, 255, 255, 0.65);
+    color: rgba(0, 0, 0, 0.65);
+    letter-spacing: 0.02em;
 }
 
-.mvp-form textarea,
-.mvp-form input[type="email"] {
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+#build-mvp .mvp-form textarea,
+#build-mvp .mvp-form input[type="email"] {
+    background: rgba(0, 0, 0, 0.04);
+    border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 8px;
     padding: 12px 14px;
-    color: #f5e6d3;
+    color: #1a1a1a;
     font-family: 'Inter', sans-serif;
     font-size: 0.92rem;
     resize: vertical;
@@ -739,41 +686,42 @@ body {
     box-sizing: border-box;
 }
 
-.mvp-form textarea:focus,
-.mvp-form input[type="email"]:focus {
+#build-mvp .mvp-form textarea:focus,
+#build-mvp .mvp-form input[type="email"]:focus {
     outline: none;
-    border-color: rgba(193, 68, 94, 0.6);
-    box-shadow: 0 0 0 2px rgba(193, 68, 94, 0.15);
+    border-color: rgba(193, 68, 94, 0.5);
+    box-shadow: 0 0 0 2px rgba(193, 68, 94, 0.1);
 }
 
-.mvp-form textarea::placeholder,
-.mvp-form input[type="email"]::placeholder {
-    color: rgba(255, 255, 255, 0.3);
+#build-mvp .mvp-form textarea::placeholder,
+#build-mvp .mvp-form input[type="email"]::placeholder {
+    color: rgba(0, 0, 0, 0.3);
 }
 
-.mvp-form textarea { min-height: 100px; }
+#build-mvp .mvp-form textarea {
+    min-height: 100px;
+}
 
-.mvp-submit-btn {
+#build-mvp .mvp-submit-btn {
     font-family: 'Inter', sans-serif;
     font-weight: 600;
     font-size: 0.92rem;
     padding: 14px 32px;
     background: #c1445e;
-    color: #f5e6d3;
+    color: #fff;
     border: none;
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.15s ease;
     margin-top: 4px;
     align-self: flex-start;
+    letter-spacing: 0.02em;
 }
 
-.mvp-submit-btn:hover { background: #a83a52; transform: translateY(-1px); }
-.mvp-submit-btn:active { transform: translateY(0); }
+#build-mvp .mvp-submit-btn:hover { background: #a83a52; transform: translateY(-1px); }
 
 @media (max-width: 600px) {
-    .prompt-headline { font-size: 1.75rem; }
-    .prompt-section { padding: 64px 24px; }
-    .prompt-subheadline { font-size: 0.92rem; }
-    .mvp-submit-btn { width: 100%; text-align: center; }
+    #build-mvp .prompt-headline { font-size: 1.75rem; }
+    #build-mvp .prompt-subheadline { font-size: 0.92rem; }
+    #build-mvp .mvp-submit-btn { width: 100%; text-align: center; }
 }
