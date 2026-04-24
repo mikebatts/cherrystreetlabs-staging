@@ -1,5 +1,12 @@
 html { scroll-behavior: smooth; }
 
+/* Registered custom property for border-beam angle (must be at stylesheet root) */
+@property --beam-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
 /* Cherry Street Labs — Landing Page */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -717,7 +724,7 @@ body {
 }
 
 /*
- * Beam ring (::before) — canonical border-mask technique from the border-beam
+ * Beam ring (.beam-border) — canonical border-mask technique from the border-beam
  * library. The element has `padding: 3px` and a mask built from two layers:
  *   1. `linear-gradient(#fff 0 0) content-box` — white only on the content box
  *   2. `linear-gradient(#fff 0 0)`              — white on the full box
@@ -726,7 +733,7 @@ body {
  * shows only along that inner border — the beam appears INSIDE the button's
  * edge rather than outside it.
  */
-.btn-beam-wrapper::before {
+.btn-beam-wrapper .beam-border {
     content: "";
     position: absolute;
     inset: 0;
@@ -759,11 +766,10 @@ body {
 }
 
 /*
- * Inner haze (::after) — same mask + padding technique, but blurred for a
- * soft halo along the inside border. Slightly wider padding (4px) so the blur
- * lands just inside the beam ring.
+ * Inner haze (.beam-haze) — same mask + padding technique, but blurred for a
+ * soft halo along the inside border.
  */
-.btn-beam-wrapper::after {
+.btn-beam-wrapper .beam-haze {
     content: "";
     position: absolute;
     inset: 0;
@@ -795,10 +801,10 @@ body {
 }
 
 /*
- * Outer bloom — sits BEHIND the button (z-index: 0) with inset: -18px so it
+ * Outer bloom (.beam-bloom) — sits BEHIND the button (z-index: 0) with inset: -18px so it
  * only shows beyond the button's edges as a soft outer glow.
  */
-.btn-beam-wrapper [data-beam-bloom] {
+.btn-beam-wrapper .beam-bloom {
     position: absolute;
     inset: -18px;
     border-radius: 22px;
@@ -824,13 +830,13 @@ body {
     box-shadow: 0 6px 24px -10px rgba(196, 30, 58, 0.35);
 }
 
-.btn-beam-wrapper[data-loading]::before,
-.btn-beam-wrapper[data-loading]::after {
+.btn-beam-wrapper[data-loading] .beam-border,
+.btn-beam-wrapper[data-loading] .beam-haze {
     opacity: 1;
     animation: beam-spin 2s linear infinite;
 }
 
-.btn-beam-wrapper[data-loading] [data-beam-bloom] {
+.btn-beam-wrapper[data-loading] .beam-bloom {
     opacity: 1;
     animation: beam-spin 2s linear infinite;
 }
@@ -854,9 +860,9 @@ body {
     pointer-events: none;
 }
 
-.btn-beam-wrapper[data-success]::before,
-.btn-beam-wrapper[data-success]::after,
-.btn-beam-wrapper[data-success] [data-beam-bloom] {
+.btn-beam-wrapper[data-success] .beam-border,
+.btn-beam-wrapper[data-success] .beam-haze,
+.btn-beam-wrapper[data-success] .beam-bloom {
     opacity: 0;
     animation: none;
 }
@@ -911,9 +917,9 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .btn-beam-wrapper[data-loading]::before,
-    .btn-beam-wrapper[data-loading]::after,
-    .btn-beam-wrapper[data-loading] [data-beam-bloom] {
+    .btn-beam-wrapper[data-loading] .beam-border,
+    .btn-beam-wrapper[data-loading] .beam-haze,
+    .btn-beam-wrapper[data-loading] .beam-bloom {
         animation: none;
     }
     .build-submit-btn .beam-dots span {
