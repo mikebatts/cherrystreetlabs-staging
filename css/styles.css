@@ -583,8 +583,8 @@ body {
     font-size: 1.05rem;
     color: var(--text-secondary);
     line-height: 1.75;
-    max-width: 600px;
-    margin: 0 0 16px;
+    max-width: 560px;
+    margin: 0 auto 16px;
 }
 
 .build-disclaimer {
