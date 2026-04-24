@@ -665,41 +665,32 @@ body {
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    transition: background 0.25s ease, color 0.25s ease, transform 0.15s ease, box-shadow 0.3s ease;
+    transition: background 0.25s ease, color 0.25s ease, box-shadow 0.3s ease;
     width: 100%;
     letter-spacing: 0.02em;
     position: relative;
-    z-index: 1;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
+    line-height: 1.4;
+    min-height: 50px;
 }
 
-.build-submit-btn:hover {
+.build-submit-btn:hover:not(:disabled) {
     background: var(--accent-hover);
-    transform: translateY(-1px);
-}
-
-.build-submit-btn:active {
-    transform: translateY(0);
 }
 
 .build-submit-btn:disabled {
     cursor: default;
 }
 
-/* ---------- Border Beam wrapper ---------- */
-@property --beam-angle {
-    syntax: "<angle>";
-    initial-value: 0deg;
-    inherits: false;
-}
-
-/*
- * Wrapper is the EXACT SAME SIZE as the button — no padding, no border.
- * The button keeps its original dimensions always. Beam layers are absolutely
- * positioned overlays; the height of the wrapper never shifts between states.
+/* ---------- Border Beam wrapper ----------
+ * The wrapper contains the button plus two beam overlays:
+ *   .beam-ring — the animated 3px ring along the button border
+ *   .beam-glow — a soft outer bloom that radiates beyond the button
+ * Both are real <div> elements (no pseudo-elements) so the mask technique
+ * from the border-beam library (padding + XOR mask) works reliably.
  */
 .btn-beam-wrapper {
     position: relative;
@@ -711,41 +702,29 @@ body {
 }
 
 /*
- * Button sits in its own stacking context so the beam (z-index: 2 on wrapper)
- * paints OVER its background. Text inside the button is part of that context,
- * so it sits under the beam — which is fine because the beam is masked to only
- * the 3px inner edge, not over the label area.
+ * Beam ring — border-only beam using the canonical padding + XOR mask
+ * technique. The element fills the wrapper (inset: 0), has `padding: 3px`,
+ * and masks out the content-box so only the 3px padding ring is painted.
+ * The conic-gradient rotates via --beam-angle to animate the beam.
+ *
+ * Colors adapted from the sunset palette: cherry red (#C41E3A) and
+ * beige (#F5F2ED) with a white hot-spot in the middle of the beam arc.
  */
-.btn-beam-wrapper .build-submit-btn {
-    border-radius: 8px;
-    position: relative;
-    z-index: 1;
-    transition: background 0.35s ease, color 0.35s ease, transform 0.15s ease;
-}
-
-/*
- * Beam ring (.beam-border) — canonical border-mask technique from the border-beam
- * library. The element has `padding: 3px` and a mask built from two layers:
- *   1. `linear-gradient(#fff 0 0) content-box` — white only on the content box
- *   2. `linear-gradient(#fff 0 0)`              — white on the full box
- * `mask-composite: exclude` (xor) subtracts layer 1 from layer 2, leaving
- * white ONLY in the 3px padding ring. The conic-gradient background then
- * shows only along that inner border — the beam appears INSIDE the button's
- * edge rather than outside it.
- */
-.btn-beam-wrapper .beam-border {
-    content: "";
+.btn-beam-wrapper .beam-ring {
     position: absolute;
     inset: 0;
     border-radius: 8px;
     padding: 3px;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.35s ease;
     background: conic-gradient(
         from var(--beam-angle),
         transparent 0%,
         transparent 40%,
         rgba(196, 30, 58, 0.55) 44%,
         rgba(245, 242, 237, 0.75) 47%,
-        rgba(255, 255, 255, 0.9) 50%,
+        rgba(255, 255, 255, 0.95) 50%,
         rgba(245, 242, 237, 0.75) 53%,
         rgba(196, 30, 58, 0.55) 56%,
         transparent 60%,
@@ -759,84 +738,40 @@ body {
         linear-gradient(#fff 0 0) content-box,
         linear-gradient(#fff 0 0);
     mask-composite: exclude;
-    opacity: 0;
-    z-index: 2;
-    pointer-events: none;
-    transition: opacity 0.35s ease;
 }
 
 /*
- * Inner haze (.beam-haze) — same mask + padding technique, but blurred for a
- * soft halo along the inside border.
+ * Outer glow — a soft conic bloom that extends slightly past the button
+ * edges. No mask — it's a blurred halo behind the button.
  */
-.btn-beam-wrapper .beam-haze {
-    content: "";
+.btn-beam-wrapper .beam-glow {
     position: absolute;
-    inset: 0;
-    border-radius: 8px;
-    padding: 4px;
-    background: conic-gradient(
-        from var(--beam-angle),
-        transparent 0%,
-        transparent 42%,
-        rgba(196, 30, 58, 0.3) 47%,
-        rgba(245, 242, 237, 0.4) 50%,
-        rgba(196, 30, 58, 0.3) 53%,
-        transparent 58%,
-        transparent 100%
-    );
-    -webkit-mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-        linear-gradient(#fff 0 0) content-box,
-        linear-gradient(#fff 0 0);
-    mask-composite: exclude;
-    filter: blur(3px);
-    opacity: 0;
-    z-index: 2;
+    inset: -14px;
+    border-radius: 18px;
     pointer-events: none;
-    transition: opacity 0.35s ease;
-}
-
-/*
- * Outer bloom (.beam-bloom) — sits BEHIND the button (z-index: 0) with inset: -18px so it
- * only shows beyond the button's edges as a soft outer glow.
- */
-.btn-beam-wrapper .beam-bloom {
-    position: absolute;
-    inset: -18px;
-    border-radius: 22px;
+    opacity: 0;
+    transition: opacity 0.4s ease;
     background: conic-gradient(
         from var(--beam-angle),
         transparent 0%,
         transparent 43%,
-        rgba(196, 30, 58, 0.28) 48%,
-        rgba(245, 242, 237, 0.32) 50%,
-        rgba(196, 30, 58, 0.28) 52%,
+        rgba(196, 30, 58, 0.32) 48%,
+        rgba(245, 242, 237, 0.38) 50%,
+        rgba(196, 30, 58, 0.32) 52%,
         transparent 57%,
         transparent 100%
     );
-    filter: blur(20px);
-    opacity: 0;
-    z-index: 0;
-    pointer-events: none;
-    transition: opacity 0.4s ease;
+    filter: blur(18px);
+    z-index: -1;
 }
 
-/* --- Loading state: wrapper dimensions unchanged, beam layers activate --- */
+/* --- Loading state: beam layers activate, button dimensions unchanged --- */
 .btn-beam-wrapper[data-loading] {
     box-shadow: 0 6px 24px -10px rgba(196, 30, 58, 0.35);
 }
 
-.btn-beam-wrapper[data-loading] .beam-border,
-.btn-beam-wrapper[data-loading] .beam-haze {
-    opacity: 1;
-    animation: beam-spin 2s linear infinite;
-}
-
-.btn-beam-wrapper[data-loading] .beam-bloom {
+.btn-beam-wrapper[data-loading] .beam-ring,
+.btn-beam-wrapper[data-loading] .beam-glow {
     opacity: 1;
     animation: beam-spin 2s linear infinite;
 }
@@ -844,14 +779,7 @@ body {
 .btn-beam-wrapper[data-loading] .build-submit-btn {
     background: linear-gradient(135deg, #a0162e 0%, #c41e3a 60%, #d4283e 100%);
     color: rgba(255, 255, 255, 0.9);
-    text-align: center;
-    transform: none !important;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1);
-}
-
-.btn-beam-wrapper[data-loading] .build-submit-btn:hover {
-    background: linear-gradient(135deg, #a0162e 0%, #c41e3a 60%, #d4283e 100%);
-    transform: none;
 }
 
 /* --- Success state: beam hidden, button fades to green --- */
@@ -860,9 +788,8 @@ body {
     pointer-events: none;
 }
 
-.btn-beam-wrapper[data-success] .beam-border,
-.btn-beam-wrapper[data-success] .beam-haze,
-.btn-beam-wrapper[data-success] .beam-bloom {
+.btn-beam-wrapper[data-success] .beam-ring,
+.btn-beam-wrapper[data-success] .beam-glow {
     opacity: 0;
     animation: none;
 }
@@ -871,7 +798,6 @@ body {
     background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
     color: #fff;
     cursor: default;
-    transform: none !important;
     opacity: 1;
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
@@ -917,9 +843,8 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .btn-beam-wrapper[data-loading] .beam-border,
-    .btn-beam-wrapper[data-loading] .beam-haze,
-    .btn-beam-wrapper[data-loading] .beam-bloom {
+    .btn-beam-wrapper[data-loading] .beam-ring,
+    .btn-beam-wrapper[data-loading] .beam-glow {
         animation: none;
     }
     .build-submit-btn .beam-dots span {

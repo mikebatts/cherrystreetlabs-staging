@@ -48,9 +48,12 @@
                     <label for="mvp-email">Your email so we can follow up</label>
                     <input type="email" id="mvp-email" name="email" placeholder="you@company.com" required>
                 </div>
-                <div class="btn-beam-wrapper" id="proto-submit-wrapper" data-beam>
-                    <button type="submit" class="build-submit-btn" id="proto-submit-btn">Get My Prototype</button>
-                    <div data-beam-bloom></div>
+                <div class="btn-beam-wrapper" id="proto-submit-wrapper">
+                    <button type="submit" class="build-submit-btn" id="proto-submit-btn">
+                        <span class="build-submit-label">Get My Prototype</span>
+                    </button>
+                    <div class="beam-ring" aria-hidden="true"></div>
+                    <div class="beam-glow" aria-hidden="true"></div>
                 </div>
                 <div class="form-status" id="form-status"></div>
             </form>
@@ -180,6 +183,7 @@
         var promptInput = document.getElementById('mvp-prompt');
         var endpoint = 'https://script.google.com/macros/s/AKfycbx3tqiFX8dRwgGLT-8TN8-7f8WIrYrPeXVnECq7Opcb9ppDKqLZC4Dfy9ZdVeUnwq2M/exec';
 
+        var label = btn.querySelector('.build-submit-label');
         var SENDING_MARKUP = 'Sending<span class="beam-dots"><span>.</span><span>.</span><span>.</span></span>';
         var SUCCESS_MARKUP = '<span class="beam-check">✓</span> Got it! We\'ll follow up within 2 hours.';
 
@@ -194,14 +198,14 @@
 
         function enterLoadingState() {
             wrapper.setAttribute('data-loading', '');
-            btn.innerHTML = SENDING_MARKUP;
+            label.innerHTML = SENDING_MARKUP;
             btn.disabled = true;
         }
 
         function enterSuccessState() {
             wrapper.removeAttribute('data-loading');
             wrapper.setAttribute('data-success', '');
-            btn.innerHTML = SUCCESS_MARKUP;
+            label.innerHTML = SUCCESS_MARKUP;
             btn.disabled = true;
             form.reset();
             setStatus('Refresh the page to send another.', 'info');
