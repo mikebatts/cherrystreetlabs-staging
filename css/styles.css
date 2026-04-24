@@ -549,7 +549,7 @@ body {
 .build-section-inner {
     max-width: 680px;
     margin: 0 auto;
-    text-align: left;
+    text-align: center;
 }
 
 .build-section .section-label {
@@ -599,6 +599,7 @@ body {
     flex-direction: column;
     gap: 18px;
     max-width: 560px;
+    margin: 0 auto;
 }
 
 .build-form .form-field {
@@ -658,8 +659,7 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background 0.2s ease, transform 0.15s ease;
-    width: auto;
-    align-self: flex-start;
+    width: 100%;
     letter-spacing: 0.02em;
 }
 
