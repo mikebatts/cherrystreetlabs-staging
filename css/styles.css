@@ -773,18 +773,18 @@ body {
   clip-path: inset(0 round 8px);
   background: conic-gradient(
         from var(--beam-angle-csl-beam),
-        transparent 0%, transparent 54%,
-        rgba(255, 255, 255, 0.04) 57%,
-        rgba(255, 255, 255, 0.08) 60%,
-        rgba(255, 255, 255, 0.14) 63%,
-        rgba(255, 255, 255, 0.18) 66%,
-        rgba(255, 255, 255, 0.14) 69%,
-        rgba(255, 255, 255, 0.08) 72%,
-        rgba(255, 255, 255, 0.04) 75%,
-        transparent 78%, transparent 100%
-      ),radial-gradient(ellipse 70px 40px at 33% -7.4%, rgba(255, 255, 255, 0.12), transparent),
-    radial-gradient(ellipse 60px 35px at 12% -5%, rgba(255, 255, 255, 0.1), transparent),
-    radial-gradient(ellipse 40px 70px at 2.1% 68.3%, rgba(245, 242, 237, 0.14), transparent),
+        transparent 0%, transparent 50%,
+        rgba(255, 255, 255, 0.1) 55%,
+        rgba(255, 255, 255, 0.25) 60%,
+        rgba(255, 255, 255, 0.45) 65%,
+        rgba(255, 255, 255, 0.6) 68%,
+        rgba(255, 255, 255, 0.45) 71%,
+        rgba(255, 255, 255, 0.25) 76%,
+        rgba(255, 255, 255, 0.1) 81%,
+        transparent 86%, transparent 100%
+      ),radial-gradient(ellipse 70px 40px at 33% -7.4%, rgba(255, 255, 255, 0.3), transparent),
+    radial-gradient(ellipse 60px 35px at 12% -5%, rgba(255, 255, 255, 0.25), transparent),
+    radial-gradient(ellipse 40px 70px at 2.1% 68.3%, rgba(255, 255, 255, 0.3), transparent),
     radial-gradient(ellipse 20px 35px at 2.1% 68.3%, rgba(255, 255, 255, 0.08), transparent),
     radial-gradient(ellipse 180px 32px at 74.4% 100%, rgba(255, 255, 255, 0.12), transparent),
     radial-gradient(ellipse 85px 26px at 55% 100%, rgba(245, 242, 237, 0.1), transparent),
@@ -794,11 +794,11 @@ body {
   -webkit-mask:
     conic-gradient(
       from var(--beam-angle-csl-beam),
-      transparent 0%, transparent 30%,
-      rgba(255, 255, 255, 0.1) 36%, rgba(255, 255, 255, 0.35) 44%,
-      white 52%, white 80%,
-      rgba(255, 255, 255, 0.35) 86%, rgba(255, 255, 255, 0.1) 92%,
-      transparent 95%, transparent 100%
+      transparent 0%, transparent 20%,
+      rgba(255, 255, 255, 0.2) 28%, rgba(255, 255, 255, 0.5) 36%,
+      white 44%, white 80%,
+      rgba(255, 255, 255, 0.5) 88%, rgba(255, 255, 255, 0.2) 94%,
+      transparent 97%, transparent 100%
     ),
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -806,11 +806,11 @@ body {
   mask:
     conic-gradient(
       from var(--beam-angle-csl-beam),
-      transparent 0%, transparent 30%,
-      rgba(255, 255, 255, 0.1) 36%, rgba(255, 255, 255, 0.35) 44%,
-      white 52%, white 80%,
-      rgba(255, 255, 255, 0.35) 86%, rgba(255, 255, 255, 0.1) 92%,
-      transparent 95%, transparent 100%
+      transparent 0%, transparent 20%,
+      rgba(255, 255, 255, 0.2) 28%, rgba(255, 255, 255, 0.5) 36%,
+      white 44%, white 80%,
+      rgba(255, 255, 255, 0.5) 88%, rgba(255, 255, 255, 0.2) 94%,
+      transparent 97%, transparent 100%
     ),
     linear-gradient(#fff 0 0) content-box,
     linear-gradient(#fff 0 0);
@@ -840,11 +840,11 @@ body {
   -webkit-mask-image:
     conic-gradient(
       from var(--beam-angle-csl-beam),
-      transparent 0%, transparent 30%,
-      rgba(255, 255, 255, 0.1) 36%, rgba(255, 255, 255, 0.35) 44%,
-      white 52%, white 80%,
-      rgba(255, 255, 255, 0.35) 86%, rgba(255, 255, 255, 0.1) 92%,
-      transparent 95%, transparent 100%
+      transparent 0%, transparent 20%,
+      rgba(255, 255, 255, 0.2) 28%, rgba(255, 255, 255, 0.5) 36%,
+      white 44%, white 80%,
+      rgba(255, 255, 255, 0.5) 88%, rgba(255, 255, 255, 0.2) 94%,
+      transparent 97%, transparent 100%
     ),
     linear-gradient(white, transparent 28px, transparent calc(100% - 28px), white),
     linear-gradient(to right, white, transparent 28px, transparent calc(100% - 28px), white);
@@ -852,11 +852,11 @@ body {
   mask-image:
     conic-gradient(
       from var(--beam-angle-csl-beam),
-      transparent 0%, transparent 30%,
-      rgba(255, 255, 255, 0.1) 36%, rgba(255, 255, 255, 0.35) 44%,
-      white 52%, white 80%,
-      rgba(255, 255, 255, 0.35) 86%, rgba(255, 255, 255, 0.1) 92%,
-      transparent 95%, transparent 100%
+      transparent 0%, transparent 20%,
+      rgba(255, 255, 255, 0.2) 28%, rgba(255, 255, 255, 0.5) 36%,
+      white 44%, white 80%,
+      rgba(255, 255, 255, 0.5) 88%, rgba(255, 255, 255, 0.2) 94%,
+      transparent 97%, transparent 100%
     ),
     linear-gradient(white, transparent 28px, transparent calc(100% - 28px), white),
     linear-gradient(to right, white, transparent 28px, transparent calc(100% - 28px), white);
@@ -876,18 +876,16 @@ body {
   clip-path: inset(0 round 8px);
   background: conic-gradient(
         from var(--beam-angle-csl-beam),
-        transparent 0%, transparent 58%,
-        rgba(255, 255, 255, 0.02) 62%,
-        rgba(255, 255, 255, 0.06) 65%,
-        rgba(255, 255, 255, 0.12) 67%,
-        rgba(255, 255, 255, 0.18) 69%,
-        rgba(255, 255, 255, 0.22) 70%,
-        rgba(255, 255, 255, 0.22) 70.5%,
-        rgba(255, 255, 255, 0.18) 71.5%,
-        rgba(255, 255, 255, 0.12) 73%,
-        rgba(255, 255, 255, 0.06) 75%,
-        rgba(255, 255, 255, 0.02) 78%,
-        transparent 82%
+        transparent 0%, transparent 54%,
+        rgba(255, 255, 255, 0.05) 58%,
+        rgba(255, 255, 255, 0.15) 62%,
+        rgba(255, 255, 255, 0.3) 66%,
+        rgba(255, 255, 255, 0.45) 68%,
+        rgba(255, 255, 255, 0.45) 70%,
+        rgba(255, 255, 255, 0.3) 72%,
+        rgba(255, 255, 255, 0.15) 76%,
+        rgba(255, 255, 255, 0.05) 80%,
+        transparent 84%
       );
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
